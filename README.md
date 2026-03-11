@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+📄 AI PDF Note Taker
 
-## Getting Started
+AI PDF Note Taker is a modern web application that lets users upload PDF files, extract information with AI, take manual notes, and save documents for later use. It combines LangChain, Google Gemini AI, and the TipTap editor for a smooth note-taking experience. The platform is fully responsive and includes secure user authentication via Clerk, as well as subscription-based access with Paddle.
 
-First, run the development server:
+Simplify your PDF workflow with AI-powered extraction and organized note management.
 
-```bash
+✨ Features
+
+📂 PDF Uploads – Upload PDF files directly to your workspace.
+🤖 AI Notes Extraction – Highlight text or ask questions; AI provides structured answers.
+✍️ Manual Note-Taking – Rich-text editing with TipTap: headings, lists, code blocks, highlights, and more.
+💾 Save Notes – Save your notes per PDF and access them later.
+🌐 Fully Responsive – Optimized for mobile, tablet, and desktop.
+🔒 User Authentication – Secure login/signup with Clerk.
+⚡ Subscription Plans – Free or Unlimited plans via Paddle with seamless upgrades.
+
+💰 Pricing Plans
+
+Unlimited Plan – <span style="color:green">ACTIVE PLAN</span>
+Price: $9.99 / One-Time
+Features:
+
+✅ Unlimited PDF uploads
+✅ Unlimited AI notes extraction
+✅ Priority email support
+✅ Help center access
+
+Free Plan
+Price: $0 / Month
+Features:
+
+✅ 5 PDF uploads
+✅ Unlimited AI notes extraction
+✅ Email support
+✅ Help center access
+
+Users can upgrade anytime to unlock full capabilities.
+
+Users can upgrade anytime to unlock full capabilities.
+
+🛠 Tech Stack
+
+Frontend: React, Next.js, TailwindCSS, TipTap Editor
+Backend: Convex (serverless backend)
+AI Integration: LangChain, Google Gemini AI
+Authentication: Clerk
+Payments: Paddle
+
+🚀 Getting Started
+
+Clone the repository:
+git clone <your-repo-url>
+cd ai-pdf-note-taker
+
+Install dependencies:
+npm install
+Run the project locally:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open in browser:
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+📝 Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Sign up or log in with your account.
+Upload a PDF to your workspace.
+Highlight text in your PDF and click the AI icon to extract answers.
+Take manual notes in the rich-text editor for any section.
+Save your notes for later reference.
+Upgrade your plan to Unlimited for unlimited PDFs and AI queries.
 
-## Learn More
+📦 File Structure
 
-To learn more about Next.js, take a look at the following resources:
+/components   → UI components (Sidebar, PDF card, Editor)
+/pages        → Next.js pages (dashboard, workspace, upgrade)
+/convex       → Backend functions and queries
+/configs      → AI and other configuration files
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🔖 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
