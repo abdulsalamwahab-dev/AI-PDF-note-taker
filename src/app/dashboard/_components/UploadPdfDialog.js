@@ -137,7 +137,22 @@ function UploadPdfDialog({ children, isMaxFile }) {
                   type="file"
                   accept="application/pdf"
                   onChange={onFileSelect}
-                  className="cursor-pointer text-sm text-gray-500"
+                     className="
+                cursor-pointer
+                text-sm text-gray-500
+                file:cursor-pointer
+                file:mr-4
+                file:py-2
+                file:px-4
+                file:rounded-md
+                file:border
+                file:border-gray-300
+                file:text-sm
+                file:font-semibold
+                file:bg-white
+                file:text-gray-700
+                hover:file:bg-gray-100
+              "
                 />
               </div>
 
