@@ -77,7 +77,7 @@ export default function Home() {
 
     {/* Tagline */}
     <div className="mb-6 inline-block text-sm bg-gray-100 text-gray-600 px-4 py-2 rounded-full">
-      ⚡ AI Powered • Smart Notes • Instant Summaries
+      :zap: AI Powered • Smart Notes • Instant Summaries
     </div>
 
     {/* Title */}

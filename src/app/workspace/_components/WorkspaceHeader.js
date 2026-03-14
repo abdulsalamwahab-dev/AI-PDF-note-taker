@@ -18,7 +18,7 @@ function WorkspaceHeader({ filename, onSave }) {
 
             {/* Desktop filename */}
             <span className="hidden sm:inline text-lg text-gray-600 max-w-50 truncate">
-              / 📄{filename}.pdf
+              / :page_facing_up:{filename}.pdf
             </span>
           </div>
         </Link>
@@ -37,7 +37,7 @@ function WorkspaceHeader({ filename, onSave }) {
       {/* Mobile filename */}
       {filename && (
         <div className="sm:hidden px-4 py-2 text-gray-600 truncate">
-          📄 {filename}.pdf
+          <label>:page_facing_up:File Name:</label> {filename}.pdf
         </div>
       )}
     </>

@@ -1,19 +1,20 @@
 import { Geist, Geist_Mono, Outfit } from "next/font/google";
 import "./globals.css";
 import Provider from "./provider";
-import { ClerkProvider } from '@clerk/nextjs'
+import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import PaddleProvider from "./PaddleProvider";
 
-const outfit = Outfit({ subsets: ["latin"] })
+const outfit = Outfit({ subsets: ["latin"] });
 
 // Professional SaaS Global Metadata
 export const metadata = {
   title: {
     default: "AI PDF Note Taker | Smart AI Workspace",
-    template: "%s | AI PDF Note Taker"
+    template: "%s | AI PDF Note Taker",
   },
-  description: "The ultimate AI-powered workspace for all users. Upload PDFs, take smart notes, and chat with your documents.",
+  description:
+    "The ultimate AI-powered workspace for all users. Upload PDFs, take smart notes, and chat with your documents.",
   icons: {
     icon: "/logo.svg",
   },
@@ -22,32 +23,30 @@ export const metadata = {
     title: "AI PDF Note Taker",
     description: "Intelligent PDF note-taking for technical professionals.",
     type: "website",
-  }
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider 
+    <ClerkProvider
       appearance={{
         layout: {
           unsafe_disableDevelopmentAndProductionSentry: true,
           logoPlacement: "none",
         },
         elements: {
-          footer: "hidden", 
-        }
+          footer: "hidden",
+        },
       }}
     >
       <html lang="en">
-        <body className={outfit.className}>
+        <body className={`${outfit.className} min-h-screen min-h-[100dvh]`}>
           <Provider>
-            <PaddleProvider>
-              {children}
-            </PaddleProvider>
+            <PaddleProvider>{children}</PaddleProvider>
           </Provider>
           <Toaster position="bottom-left" richColors />
         </body>
       </html>
     </ClerkProvider>
-  )
+  );
 }

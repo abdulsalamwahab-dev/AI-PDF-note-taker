@@ -13,33 +13,37 @@ export default function Workspace() {
   const editorRef = useRef(null);
 
   useEffect(() => {
-    // Dynamically update the browser tab title to the PDF name
     if (fileInfo?.fileName) {
       document.title = `${fileInfo.fileName} | AI PDF Note Taker`;
     }
   }, [fileInfo]);
+
   return (
-    <div className="flex flex-col h-screen gap-5 mb-4">
-      {/* Header with Save button */}
-      <WorkspaceHeader 
-        filename={fileInfo?.fileName || "Unnamed File"} 
-        onSave={() => editorRef.current?.save()} 
+   <div className="flex flex-col h-screen gap-2 md:gap-4">
+
+      <WorkspaceHeader
+        filename={fileInfo?.fileName || "Unnamed File"}
+        onSave={() => editorRef.current?.save()}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 flex-1 overflow-hidden">
-        <div className="h-full">
-          {/* Text Editor with ref */}
+      <div className="grid grid-cols-1 md:grid-cols-2 flex-1 gap-4 min-h-0 px-2 md:px-4">
+
+        {/* EDITOR */}
+        <div className="h-[50vh] md:h-full flex flex-col border rounded-lg overflow-hidden">
           <TextEditor fileId={fileId} ref={editorRef} />
         </div>
 
-        <div className="h-full overflow-scroll md:p-0 p-2">
-          {/* PDF Viewer */}
+        {/* PDF */}
+        <div className="h-[50vh] md:h-full border rounded-lg overflow-auto min-h-0">
           {fileInfo ? (
             <PdfViewer fileUrl={fileInfo.fileUrl} />
           ) : (
-            <p className="text-center">Loading PDF...</p>
+            <div className="flex items-center justify-center h-full">
+              Loading PDF...
+            </div>
           )}
         </div>
+
       </div>
     </div>
   );

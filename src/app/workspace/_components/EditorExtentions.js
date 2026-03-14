@@ -38,7 +38,7 @@ function EditorExtentions({ editor }) {
 
   // Retry logic for AI generation
   const generateWithRetry = async (prompt, retries = 3, delay = 2000) => {
-    for (let i = 0; i < retries; i++) { 
+    for (let i = 0; i < retries; i++) {
       try {
         return await aiModel.models.generateContent({
           model: "gemini-3-flash-preview",
@@ -86,10 +86,10 @@ function EditorExtentions({ editor }) {
 ROLE: You are an expert Document Data Analyst.
 TASK: Extract the exact value for the user's query from the provided Context.
 
-CONTEXT: 
+CONTEXT:
 ${context}
 
-QUERY: 
+QUERY:
 "${selectedText}"
 
 STRICT INSTRUCTIONS:
@@ -133,20 +133,20 @@ STRICT INSTRUCTIONS:
     };
 
     toast.promise(aiProcess(), {
-      loading: "🤖 AI is thinking...",
+      loading: ":robot_face: AI is thinking...",
       success: (msg) => msg,
       error: (err) => err.message || "AI failed to generate answer",
     });
   };
   return (
-    <div className="p-5">
-      <div className="flex gap-1 flex-wrap">
+    <div className="p-3 md:p-5">
+      <div className="flex flex-wrap  md:gap-2">
         {/* HEADINGS */}
         <button
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 1 }).run()
           }
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("heading", { level: 1 }) ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("heading", { level: 1 }) ? "text-blue-500" : ""}`}
         >
           <Heading1 />
         </button>
@@ -154,7 +154,7 @@ STRICT INSTRUCTIONS:
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 2 }).run()
           }
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("heading", { level: 2 }) ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("heading", { level: 2 }) ? "text-blue-500" : ""}`}
         >
           <Heading2 />
         </button>
@@ -162,7 +162,7 @@ STRICT INSTRUCTIONS:
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 3 }).run()
           }
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("heading", { level: 3 }) ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("heading", { level: 3 }) ? "text-blue-500" : ""}`}
         >
           <Heading3 />
         </button>
@@ -170,49 +170,49 @@ STRICT INSTRUCTIONS:
         {/* FORMATTING */}
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("bold") ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("bold") ? "text-blue-500" : ""}`}
         >
           <Bold />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("italic") ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("italic") ? "text-blue-500" : ""}`}
         >
           <Italic />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleUnderline().run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("underline") ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("underline") ? "text-blue-500" : ""}`}
         >
           <Underline />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleHighlight().run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("highlight") ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("highlight") ? "text-blue-500" : ""}`}
         >
           <HighlighterIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleStrike().run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("strike") ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("strike") ? "text-blue-500" : ""}`}
         >
           <Strikethrough />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleSubscript().run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("subscript") ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("subscript") ? "text-blue-500" : ""}`}
         >
           <SubscriptIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleSuperscript().run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("superscript") ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("superscript") ? "text-blue-500" : ""}`}
         >
           <SuperscriptIcon />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleCode().run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("code") ? "text-green-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("code") ? "text-green-500" : ""}`}
         >
           <Code />
         </button>
@@ -220,25 +220,25 @@ STRICT INSTRUCTIONS:
         {/* LISTS & OTHERS */}
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("bulletList") ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("bulletList") ? "text-blue-500" : ""}`}
         >
           <List />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("orderedList") ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("orderedList") ? "text-blue-500" : ""}`}
         >
           <ListOrdered />
         </button>
         <button
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("blockquote") ? "text-blue-500" : ""}`}
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${editor.isActive("blockquote") ? "text-blue-500" : ""}`}
         >
           <Quote />
         </button>
         <button
           onClick={() => editor.chain().focus().setHorizontalRule().run()}
-          className="cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100"
+          className="cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100"
         >
           <SlidersHorizontal />
         </button>
@@ -246,7 +246,7 @@ STRICT INSTRUCTIONS:
         {/* ALIGNMENT */}
         <button
           onClick={() => editor.chain().focus().setTextAlign("left").run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${
             editor.isActive({ textAlign: "left" })
               ? "text-blue-500 bg-gray-200"
               : ""
@@ -256,7 +256,7 @@ STRICT INSTRUCTIONS:
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign("center").run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${
             editor.isActive({ textAlign: "center" })
               ? "text-blue-500 bg-gray-200"
               : ""
@@ -266,7 +266,7 @@ STRICT INSTRUCTIONS:
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign("right").run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${
             editor.isActive({ textAlign: "right" })
               ? "text-blue-500 bg-gray-200"
               : ""
@@ -276,7 +276,7 @@ STRICT INSTRUCTIONS:
         </button>
         <button
           onClick={() => editor.chain().focus().setTextAlign("justify").run()}
-          className={`cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 ${
+          className={`cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 ${
             editor.isActive({ textAlign: "justify" })
               ? "text-blue-500 bg-gray-200"
               : ""
@@ -288,7 +288,7 @@ STRICT INSTRUCTIONS:
         {/* AI ACTION */}
         <button
           onClick={() => onAiClick()}
-          className="cursor-pointer p-2 rounded-md transition-all hover:bg-gray-100 hover:text-blue-500 text-purple-600"
+          className="cursor-pointer p-1.5 rounded-md transition-all hover:bg-gray-100 hover:text-blue-500 text-purple-600"
         >
           <Sparkles />
         </button>

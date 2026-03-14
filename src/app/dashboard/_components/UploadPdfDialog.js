@@ -41,12 +41,12 @@ function UploadPdfDialog({ children, isMaxFile }) {
   const onUpload = async () => {
 
     if (!file) {
-      toast.error("⚠️ Please select a PDF file first!");
+      toast.error(":warning: Please select a PDF file first!");
       return;
     }
 
     if (!user?.primaryEmailAddress?.emailAddress) {
-      toast.error("⚠️ User not logged in");
+      toast.error(":warning: User not logged in");
       return;
     }
 
@@ -54,10 +54,8 @@ function UploadPdfDialog({ children, isMaxFile }) {
 
     try {
 
-      // 1️⃣ Get upload URL from Convex
       const postUrl = await generateUploadUrl();
 
-      // 2️⃣ Upload file to Convex storage
       const response = await fetch(postUrl, {
         method: "POST",
         headers: {
@@ -68,15 +66,10 @@ function UploadPdfDialog({ children, isMaxFile }) {
 
       const { storageId } = await response.json();
 
-      console.log("File uploaded to Convex storage with ID:", storageId);
-
-      // 3️⃣ Generate unique fileId
       const fileId = uuidv4();
 
-      // 4️⃣ Get signed file URL
       const signedUrl = await getFileUrl({ storageId });
 
-      // 5️⃣ Save file metadata in Convex
       await addFileEntry({
         fileId,
         storageId,
@@ -85,22 +78,17 @@ function UploadPdfDialog({ children, isMaxFile }) {
         createdBy: user.primaryEmailAddress.emailAddress,
       });
 
-      console.log("File metadata saved");
-
-      // 6️⃣ Generate embeddings
       await embedDocument({
         fileId,
         storageId,
       });
 
-      console.log("Embeddings created");
-
-      toast.success(`📄 File "${fileName || file.name}" uploaded successfully!`);
+      toast.success(`:page_facing_up: File "${fileName || file.name}" uploaded successfully!`);
 
     } catch (err) {
 
       console.error("Upload failed:", err);
-      toast.error(`❌ Upload failed: ${err.message || "Unknown error"}`);
+      toast.error(`:x: Upload failed: ${err.message || "Unknown error"}`);
 
     } finally {
 
@@ -112,6 +100,7 @@ function UploadPdfDialog({ children, isMaxFile }) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
+
       <DialogTrigger asChild>
         <Button
           onClick={() => setOpen(true)}
@@ -122,38 +111,44 @@ function UploadPdfDialog({ children, isMaxFile }) {
         </Button>
       </DialogTrigger>
 
-      <DialogContent>
+      {/* RESPONSIVE FIX */}
+      <DialogContent className="w-[95%] max-w-md">
 
         <DialogHeader>
           <DialogTitle>Upload PDF File</DialogTitle>
 
           <DialogDescription asChild>
+
             <div className="mt-5">
 
               <h2 className="mb-2">Select a PDF file to upload</h2>
 
-              <div className="gap-2 p-3 rounded-md border border-gray-300">
+              {/* FILE INPUT FIX */}
+              <div className="flex flex-col gap-2 p-3 rounded-md border border-gray-300 w-full overflow-hidden">
+
                 <input
                   type="file"
                   accept="application/pdf"
                   onChange={onFileSelect}
-                     className="
-                cursor-pointer
-                text-sm text-gray-500
-                file:cursor-pointer
-                file:mr-4
-                file:py-2
-                file:px-4
-                file:rounded-md
-                file:border
-                file:border-gray-300
-                file:text-sm
-                file:font-semibold
-                file:bg-white
-                file:text-gray-700
-                hover:file:bg-gray-100
-              "
+                  className="
+                  w-full
+                  cursor-pointer
+                  text-sm text-gray-500
+                  file:cursor-pointer
+                  file:mr-2
+                  file:py-2
+                  file:px-3
+                  file:rounded-md
+                  file:border
+                  file:border-gray-300
+                  file:text-sm
+                  file:font-semibold
+                  file:bg-white
+                  file:text-gray-700
+                  hover:file:bg-gray-100
+                  "
                 />
+
               </div>
 
               <div className="mt-3">
@@ -161,31 +156,34 @@ function UploadPdfDialog({ children, isMaxFile }) {
 
                 <Input
                   placeholder="Enter file name"
-                  className="mt-2"
+                  className="mt-2 w-full"
                   value={fileName}
                   onChange={(e) => setFileName(e.target.value)}
                 />
               </div>
 
             </div>
+
           </DialogDescription>
         </DialogHeader>
 
-        <DialogFooter className="sm:justify-end">
+        {/* BUTTONS RESPONSIVE */}
+        <DialogFooter className="flex flex-col-reverse sm:flex-row gap-2 sm:justify-end">
 
           <DialogClose asChild>
-            <Button variant="secondary" className="p-4">
+            <Button variant="secondary" className="p-4 w-full sm:w-auto">
               Close
             </Button>
           </DialogClose>
 
-          <Button onClick={onUpload} disabled={loading}>
+          <Button onClick={onUpload} disabled={loading} className="w-full sm:w-auto">
             {loading ? <Loader2Icon className="animate-spin" /> : "Upload"}
           </Button>
 
         </DialogFooter>
 
       </DialogContent>
+
     </Dialog>
   );
 }
