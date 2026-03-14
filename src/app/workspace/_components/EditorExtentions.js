@@ -133,7 +133,7 @@ STRICT INSTRUCTIONS:
     };
 
     toast.promise(aiProcess(), {
-      loading: ":robot_face: AI is thinking...",
+      loading:"🤖 AI is thinking...",
       success: (msg) => msg,
       error: (err) => err.message || "AI failed to generate answer",
     });

@@ -41,12 +41,12 @@ function UploadPdfDialog({ children, isMaxFile }) {
   const onUpload = async () => {
 
     if (!file) {
-      toast.error(":warning: Please select a PDF file first!");
+      toast.error("⚠️ Please select a PDF file first!");
       return;
     }
 
     if (!user?.primaryEmailAddress?.emailAddress) {
-      toast.error(":warning: User not logged in");
+      toast.error("⚠️ User not logged in");
       return;
     }
 
@@ -83,12 +83,12 @@ function UploadPdfDialog({ children, isMaxFile }) {
         storageId,
       });
 
-      toast.success(`:page_facing_up: File "${fileName || file.name}" uploaded successfully!`);
+      toast.success(`📄 File "${fileName || file.name}" uploaded successfully!`);
 
     } catch (err) {
 
       console.error("Upload failed:", err);
-      toast.error(`:x: Upload failed: ${err.message || "Unknown error"}`);
+      toast.error(`❌ Upload failed: ${err.message || "Unknown error"}`);
 
     } finally {
 
